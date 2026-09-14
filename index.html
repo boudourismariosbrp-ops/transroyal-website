@@ -4,11 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>TRANSROYAL | Freight Forwarding & Logistics</title>
+    <title>TransRoyal | Freight Forwarding & Logistics</title>
 
-    <meta name="description" content="TRANSROYAL — Freight Forwarding & Logistics. International and national transport, warehousing, distribution, air freight and sea freight.">
+    <meta name="description"
+          content="TransRoyal — Freight Forwarding & Logistics. International and national transport, warehousing, distribution, air freight, sea freight and customs services.">
 
     <style>
+
+        :root {
+            --black: #080808;
+            --black-soft: #101010;
+            --white: #ffffff;
+            --white-soft: #eeeeee;
+            --gold: #d4af37;
+            --gold-light: #f0d77a;
+            --gray: #9b9b9b;
+            --border: rgba(255,255,255,0.10);
+            --max-width: 1200px;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -21,359 +35,1235 @@
 
         body {
             font-family: Arial, Helvetica, sans-serif;
-            background: #0a0a0a;
-            color: #ffffff;
+            background: var(--black);
+            color: var(--white);
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        .container {
+            width: min(92%, var(--max-width));
+            margin: auto;
+        }
+
+        /* =========================
+           HEADER
+        ========================= */
+
         header {
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
-            padding: 22px 7%;
+            z-index: 1000;
+            background: rgba(8,8,8,0.90);
+            backdrop-filter: blur(14px);
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .nav {
+            min-height: 82px;
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+            justify-content: space-between;
+            gap: 30px;
+        }
+
+        .logo-wrap {
+            width: 185px;
+            height: 58px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
         }
 
         .logo {
-            font-size: 26px;
-            font-weight: 800;
-            letter-spacing: 3px;
-            color: #d4af37;
+            width: 185px;
+            height: auto;
+            object-fit: contain;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 32px;
         }
 
         nav a {
-            color: #ffffff;
-            text-decoration: none;
-            margin-left: 25px;
-            font-size: 14px;
+            position: relative;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--white-soft);
+            transition: color 0.3s ease;
+        }
+
+        nav a::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -8px;
+            width: 0;
+            height: 2px;
+            background: var(--gold);
+            transition: width 0.3s ease;
         }
 
         nav a:hover {
-            color: #d4af37;
+            color: var(--gold);
         }
 
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* =========================
+           HERO
+        ========================= */
+
         .hero {
-            min-height: 85vh;
+            min-height: 100vh;
             display: flex;
             align-items: center;
-            padding: 80px 7%;
+            position: relative;
+            overflow: hidden;
+            padding: 140px 0 100px;
             background:
-                radial-gradient(circle at 80% 30%, rgba(212, 175, 55, 0.12), transparent 35%),
-                #0a0a0a;
+                radial-gradient(circle at 80% 30%, rgba(212,175,55,0.10), transparent 30%),
+                linear-gradient(135deg, #080808 0%, #111111 55%, #080808 100%);
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            border: 1px solid rgba(212,175,55,0.12);
+            border-radius: 50%;
+            right: -180px;
+            top: 15%;
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            width: 700px;
+            height: 1px;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(212,175,55,0.45),
+                transparent
+            );
+            right: -100px;
+            top: 55%;
+            transform: rotate(-25deg);
         }
 
         .hero-content {
-            max-width: 800px;
+            position: relative;
+            z-index: 2;
+            max-width: 820px;
         }
 
         .eyebrow {
-            color: #d4af37;
-            font-size: 13px;
-            letter-spacing: 4px;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--gold);
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 3px;
             text-transform: uppercase;
-            margin-bottom: 20px;
-        }
-
-        h1 {
-            font-size: clamp(48px, 8vw, 92px);
-            line-height: 0.95;
-            letter-spacing: -3px;
             margin-bottom: 25px;
         }
 
-        .hero p {
-            max-width: 620px;
-            color: #bdbdbd;
+        .eyebrow::before {
+            content: "";
+            width: 38px;
+            height: 2px;
+            background: var(--gold);
+        }
+
+        .hero h1 {
+            font-size: clamp(48px, 7vw, 92px);
+            line-height: 0.98;
+            letter-spacing: -3px;
+            font-weight: 900;
+            max-width: 850px;
+            margin-bottom: 30px;
+        }
+
+        .hero h1 span {
+            color: var(--gold);
+        }
+
+        .hero-text {
+            max-width: 650px;
+            color: #bcbcbc;
             font-size: 18px;
-            margin-bottom: 35px;
+            line-height: 1.8;
+            margin-bottom: 42px;
         }
 
-        .button {
-            display: inline-block;
-            background: #d4af37;
-            color: #0a0a0a;
-            padding: 15px 28px;
-            text-decoration: none;
-            font-weight: 700;
-            letter-spacing: 1px;
-            transition: 0.3s;
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+            padding: 17px 30px;
+            background: var(--gold);
+            color: #080808;
+            font-size: 13px;
+            font-weight: 900;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            border: 1px solid var(--gold);
+            transition:
+                transform 0.3s ease,
+                background 0.3s ease,
+                box-shadow 0.3s ease;
         }
 
-        .button:hover {
-            background: #ffffff;
+        .btn::after {
+            content: "→";
+            font-size: 18px;
+            transition: transform 0.3s ease;
         }
+
+        .btn:hover {
+            background: var(--gold-light);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(212,175,55,0.18);
+        }
+
+        .btn:hover::after {
+            transform: translateX(5px);
+        }
+
+        /* =========================
+           GENERAL SECTIONS
+        ========================= */
 
         section {
-            padding: 90px 7%;
+            padding: 110px 0;
+        }
+
+        .section-label {
+            color: var(--gold);
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 18px;
         }
 
         .section-title {
-            font-size: 42px;
-            margin-bottom: 15px;
+            font-size: clamp(34px, 5vw, 58px);
+            line-height: 1.05;
+            letter-spacing: -1.5px;
+            margin-bottom: 24px;
         }
 
         .section-intro {
-            color: #999;
-            max-width: 650px;
+            color: var(--gray);
+            max-width: 700px;
+            font-size: 17px;
+            line-height: 1.8;
+        }
+
+        /* =========================
+           INTRO
+        ========================= */
+
+        .intro {
+            background: var(--white);
+            color: var(--black);
+        }
+
+        .intro-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .intro .section-label {
+            color: #9d7d13;
+        }
+
+        .intro-text {
+            color: #555;
+            font-size: 18px;
+            line-height: 1.9;
+        }
+
+        .intro-highlight {
+            border-left: 3px solid var(--gold);
+            padding-left: 30px;
+        }
+
+        .intro-highlight strong {
+            display: block;
+            font-size: 25px;
+            line-height: 1.35;
+            margin-bottom: 12px;
+        }
+
+        .intro-highlight span {
+            color: #666;
+        }
+
+        /* =========================
+           SERVICES
+        ========================= */
+
+        .services {
+            background: #0c0c0c;
+        }
+
+        .services-head {
+            display: flex;
+            justify-content: space-between;
+            gap: 50px;
+            align-items: end;
+            margin-bottom: 60px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1px;
+            background: var(--border);
+            border: 1px solid var(--border);
+        }
+
+        .service-card {
+            min-height: 230px;
+            padding: 34px 28px;
+            background: #0c0c0c;
+            position: relative;
+            transition:
+                background 0.3s ease,
+                transform 0.3s ease;
+        }
+
+        .service-card::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 0;
+            height: 3px;
+            background: var(--gold);
+            transition: width 0.3s ease;
+        }
+
+        .service-card:hover {
+            background: #151515;
+            transform: translateY(-5px);
+        }
+
+        .service-card:hover::before {
+            width: 100%;
+        }
+
+        .service-number {
+            color: var(--gold);
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 2px;
             margin-bottom: 50px;
         }
 
-        .services {
-            background: #111111;
+        .service-card h3 {
+            font-size: 20px;
+            margin-bottom: 12px;
         }
 
-        .service-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-        }
-
-        .service {
-            border: 1px solid #292929;
-            padding: 30px;
-            min-height: 170px;
-            background: #0d0d0d;
-        }
-
-        .service h3 {
-            color: #d4af37;
-            margin-bottom: 10px;
-        }
-
-        .service p {
-            color: #999;
+        .service-card p {
+            color: #8f8f8f;
             font-size: 14px;
+            line-height: 1.7;
         }
+
+        /* =========================
+           WHY US
+        ========================= */
 
         .why {
-            background: #0a0a0a;
+            background: var(--black);
         }
 
         .why-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
+            gap: 25px;
+            margin-top: 60px;
         }
 
-        .why-item h3 {
-            margin-bottom: 10px;
-            color: #d4af37;
+        .why-card {
+            padding: 40px;
+            border: 1px solid var(--border);
+            background: linear-gradient(
+                145deg,
+                rgba(255,255,255,0.035),
+                rgba(255,255,255,0.01)
+            );
+            transition:
+                transform 0.3s ease,
+                border-color 0.3s ease;
         }
 
-        .why-item p {
-            color: #999;
+        .why-card:hover {
+            transform: translateY(-7px);
+            border-color: rgba(212,175,55,0.55);
         }
 
-        .cta {
-            text-align: center;
-            background: #d4af37;
-            color: #0a0a0a;
-        }
-
-        .cta h2 {
-            font-size: 45px;
-            margin-bottom: 15px;
-        }
-
-        .cta p {
+        .why-icon {
+            width: 48px;
+            height: 48px;
+            border: 1px solid rgba(212,175,55,0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gold);
+            font-weight: 900;
             margin-bottom: 30px;
         }
 
-        .cta .button {
-            background: #0a0a0a;
-            color: #ffffff;
+        .why-card h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
         }
+
+        .why-card p {
+            color: #999;
+            line-height: 1.8;
+        }
+
+        /* =========================
+           PROCESS
+        ========================= */
+
+        .process {
+            background: #f5f5f5;
+            color: var(--black);
+        }
+
+        .process .section-label {
+            color: #9d7d13;
+        }
+
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0;
+            margin-top: 60px;
+            border-top: 1px solid #d6d6d6;
+        }
+
+        .process-step {
+            padding: 38px 30px;
+            border-right: 1px solid #d6d6d6;
+        }
+
+        .process-step:last-child {
+            border-right: 0;
+        }
+
+        .process-number {
+            color: #9d7d13;
+            font-size: 13px;
+            font-weight: 900;
+            letter-spacing: 2px;
+            margin-bottom: 35px;
+        }
+
+        .process-step h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        .process-step p {
+            color: #666;
+            line-height: 1.8;
+        }
+
+        /* =========================
+           CTA
+        ========================= */
+
+        .cta {
+            position: relative;
+            overflow: hidden;
+            background:
+                linear-gradient(
+                    120deg,
+                    #080808 0%,
+                    #171717 50%,
+                    #080808 100%
+                );
+            text-align: center;
+        }
+
+        .cta::before {
+            content: "";
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            border: 1px solid rgba(212,175,55,0.12);
+            border-radius: 50%;
+            left: -250px;
+            top: -180px;
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 2;
+            max-width: 780px;
+            margin: auto;
+        }
+
+        .cta h2 {
+            font-size: clamp(40px, 6vw, 72px);
+            line-height: 1;
+            margin-bottom: 25px;
+        }
+
+        .cta p {
+            color: #999;
+            font-size: 17px;
+            margin-bottom: 35px;
+        }
+
+        /* =========================
+           QUOTE FORM
+        ========================= */
+
+        .quote {
+            background: var(--white);
+            color: var(--black);
+        }
+
+        .quote-grid {
+            display: grid;
+            grid-template-columns: 0.8fr 1.2fr;
+            gap: 80px;
+            align-items: start;
+        }
+
+        .quote .section-label {
+            color: #9d7d13;
+        }
+
+        .quote-info p {
+            color: #666;
+            line-height: 1.8;
+            margin-top: 20px;
+        }
+
+        .quote-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-group.full {
+            grid-column: 1 / -1;
+        }
+
+        .form-group label {
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            border: 1px solid #d8d8d8;
+            background: #fafafa;
+            padding: 15px;
+            font-family: inherit;
+            font-size: 14px;
+            outline: none;
+            transition:
+                border-color 0.25s ease,
+                background 0.25s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: var(--gold);
+            background: var(--white);
+        }
+
+        .form-group textarea {
+            min-height: 140px;
+            resize: vertical;
+        }
+
+        .form-submit {
+            grid-column: 1 / -1;
+            margin-top: 8px;
+        }
+
+        .form-submit button {
+            border: 0;
+            cursor: pointer;
+            font-family: inherit;
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
 
         footer {
-            padding: 35px 7%;
             background: #050505;
-            color: #777;
-            text-align: center;
-            font-size: 13px;
+            border-top: 1px solid var(--border);
+            padding: 35px 0;
         }
 
-        @media (max-width: 800px) {
-            header {
-                flex-direction: column;
-                gap: 15px;
+        .footer-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .footer-brand {
+            font-size: 14px;
+            font-weight: 900;
+            letter-spacing: 2px;
+        }
+
+        .footer-brand span {
+            color: var(--gold);
+        }
+
+        .footer-copy {
+            color: #666;
+            font-size: 12px;
+        }
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 950px) {
+
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
 
-            nav a {
-                margin: 0 8px;
+            .intro-grid,
+            .quote-grid {
+                grid-template-columns: 1fr;
+                gap: 45px;
             }
 
-            .hero {
-                min-height: 75vh;
-                padding-top: 60px;
-            }
-
-            .service-grid,
             .why-grid {
                 grid-template-columns: 1fr;
             }
 
-            section {
-                padding: 65px 6%;
+            .process-grid {
+                grid-template-columns: 1fr;
             }
 
-            .section-title {
-                font-size: 34px;
+            .process-step {
+                border-right: 0;
+                border-bottom: 1px solid #d6d6d6;
             }
 
-            .cta h2 {
-                font-size: 34px;
+            .process-step:last-child {
+                border-bottom: 0;
+            }
+
+            .services-head {
+                display: block;
             }
         }
-    .logo {
-    width: 180px;
-    height: auto;
-}
+
+        @media (max-width: 700px) {
+
+            .nav {
+                min-height: 70px;
+            }
+
+            .logo-wrap,
+            .logo {
+                width: 145px;
+            }
+
+            nav {
+                gap: 14px;
+            }
+
+            nav a {
+                font-size: 10px;
+                letter-spacing: 1px;
+            }
+
+            .hero {
+                min-height: 90vh;
+                padding-top: 120px;
+            }
+
+            .hero h1 {
+                font-size: clamp(43px, 13vw, 65px);
+                letter-spacing: -2px;
+            }
+
+            .hero-text {
+                font-size: 16px;
+            }
+
+            section {
+                padding: 80px 0;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .service-card {
+                min-height: 200px;
+            }
+
+            .quote-form {
+                grid-template-columns: 1fr;
+            }
+
+            .form-group.full,
+            .form-submit {
+                grid-column: auto;
+            }
+
+            .footer-inner {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 450px) {
+
+            .container {
+                width: 88%;
+            }
+
+            nav a:nth-child(2) {
+                display: none;
+            }
+
+            .logo-wrap,
+            .logo {
+                width: 130px;
+            }
+
+            .hero h1 {
+                font-size: 43px;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+
     </style>
 </head>
 
 <body>
 
-<header>
-    <img src="logo.png" alt="TransRoyal" class="logo">
+    <!-- HEADER -->
+    <header>
+        <div class="container nav">
 
-    <nav>
-        <a href="#services">Services</a>
-        <a href="#why-us">Why Us</a>
-        <a href="#contact">Contact</a>
-    </nav>
-</header>
+            <a href="#top" class="logo-wrap">
+                <img src="logo.png" alt="TransRoyal" class="logo">
+            </a>
 
-<main>
-
-    <section class="hero">
-        <div class="hero-content">
-            <div class="eyebrow">Freight Forwarding & Logistics</div>
-
-            <h1>Moving Business Forward.</h1>
-
-            <p>
-                Professional freight forwarding and logistics solutions
-                for national and international transportation needs.
-            </p>
-
-            <a href="#contact" class="button">GET YOUR QUOTE</a>
-        </div>
-    </section>
-
-    <section id="services" class="services">
-
-        <h2 class="section-title">Our Services</h2>
-
-        <p class="section-intro">
-            Flexible logistics and freight solutions designed around
-            your transportation requirements.
-        </p>
-
-        <div class="service-grid">
-
-            <div class="service">
-                <h3>International Transport</h3>
-                <p>International freight transportation solutions.</p>
-            </div>
-
-            <div class="service">
-                <h3>National Transport</h3>
-                <p>Reliable transportation solutions within the national market.</p>
-            </div>
-
-            <div class="service">
-                <h3>Distribution</h3>
-                <p>Efficient distribution solutions for your cargo.</p>
-            </div>
-
-            <div class="service">
-                <h3>Air Freight</h3>
-                <p>Air freight solutions for time-sensitive shipments.</p>
-            </div>
-
-            <div class="service">
-                <h3>Sea Freight</h3>
-                <p>Sea freight solutions for international cargo.</p>
-            </div>
-
-            <div class="service">
-                <h3>Warehousing</h3>
-                <p>Flexible warehousing and cargo handling solutions.</p>
-            </div>
-
-            <div class="service">
-                <h3>Customs Clearance</h3>
-                <p>Support with customs clearance procedures.</p>
-            </div>
-
-            <div class="service">
-                <h3>Cargo Insurance</h3>
-                <p>Additional protection options for your cargo.</p>
-            </div>
+            <nav>
+                <a href="#services">Services</a>
+                <a href="#why">Why Us</a>
+                <a href="#quote">Quote</a>
+            </nav>
 
         </div>
+    </header>
 
-    </section>
 
-    <section id="why-us" class="why">
+    <main id="top">
 
-        <h2 class="section-title">Why TransRoyal</h2>
+        <!-- HERO -->
+        <section class="hero">
 
-        <p class="section-intro">
-            A professional approach focused on communication,
-            flexibility and dependable logistics coordination.
-        </p>
+            <div class="container hero-content">
 
-        <div class="why-grid">
+                <div class="eyebrow">
+                    Freight Forwarding & Logistics
+                </div>
 
-            <div class="why-item">
-                <h3>Professional</h3>
-                <p>
-                    Clear communication and a professional approach
-                    from enquiry to delivery.
+                <h1>
+                    Moving Business<br>
+                    <span>Forward.</span>
+                </h1>
+
+                <p class="hero-text">
+                    Professional logistics and freight forwarding solutions
+                    designed to move cargo efficiently across national and
+                    international routes.
                 </p>
+
+                <a href="#quote" class="btn">
+                    Get Your Quote
+                </a>
+
             </div>
 
-            <div class="why-item">
-                <h3>Flexible</h3>
-                <p>
-                    Solutions designed around the specific needs
-                    of each shipment.
-                </p>
+        </section>
+
+
+        <!-- INTRO -->
+        <section class="intro">
+
+            <div class="container intro-grid">
+
+                <div>
+                    <div class="section-label">
+                        TransRoyal
+                    </div>
+
+                    <h2 class="section-title">
+                        Logistics without unnecessary complexity.
+                    </h2>
+
+                    <p class="intro-text">
+                        TransRoyal provides freight forwarding and logistics
+                        services for businesses that need reliable movement,
+                        coordination and professional handling of their cargo.
+                    </p>
+                </div>
+
+                <div class="intro-highlight">
+                    <strong>
+                        From origin to destination, every movement matters.
+                    </strong>
+
+                    <span>
+                        Transport, warehousing, distribution and freight
+                        solutions brought together through one professional
+                        logistics approach.
+                    </span>
+                </div>
+
             </div>
 
-            <div class="why-item">
-                <h3>International</h3>
-                <p>
-                    Freight forwarding solutions for national
-                    and international transportation needs.
+        </section>
+
+
+        <!-- SERVICES -->
+        <section class="services" id="services">
+
+            <div class="container">
+
+                <div class="services-head">
+
+                    <div>
+                        <div class="section-label">
+                            Our Services
+                        </div>
+
+                        <h2 class="section-title">
+                            Complete logistics solutions.
+                        </h2>
+                    </div>
+
+                    <p class="section-intro">
+                        A broad range of transportation and logistics services
+                        designed to support different cargo requirements.
+                    </p>
+
+                </div>
+
+
+                <div class="services-grid">
+
+                    <article class="service-card">
+                        <div class="service-number">01</div>
+                        <h3>International Transport</h3>
+                        <p>
+                            International cargo transportation and forwarding
+                            solutions.
+                        </p>
+                    </article>
+
+                    <article class="service-card">
+                        <div class="service-number">02</div>
+                        <h3>National Transport</h3>
+                        <p>
+                            Professional transportation solutions across
+                            domestic routes.
+                        </p>
+                    </article>
+
+                    <article class="service-card">
+                        <div class="service-number">03</div>
+                        <h3>Warehousing</h3>
+                        <p>
+                            Flexible storage and cargo handling solutions.
+                        </p>
+                    </article>
+
+                    <article class="service-card">
+                        <div class="service-number">04</div>
+                        <h3>Distribution</h3>
+                        <p>
+                            Coordinated distribution solutions for efficient
+                            cargo movement.
+                        </p>
+                    </article>
+
+                    <article class="service-card">
+                        <div class="service-number">05</div>
+                        <h3>Air Freight</h3>
+                        <p>
+                            Air freight solutions for time-sensitive cargo.
+                        </p>
+                    </article>
+
+                    <article class="service-card">
+                        <div class="service-number">06</div>
+                        <h3>Sea Freight</h3>
+                        <p>
+                            Sea freight solutions for international cargo.
+                        </p>
+                    </article>
+
+                    <article class="service-card">
+                        <div class="service-number">07</div>
+                        <h3>Cargo Insurance</h3>
+                        <p>
+                            Cargo insurance solutions available according to
+                            shipment requirements.
+                        </p>
+                    </article>
+
+                    <article class="service-card">
+                        <div class="service-number">08</div>
+                        <h3>Customs Clearance</h3>
+                        <p>
+                            Customs clearance support for international
+                            shipments.
+                        </p>
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- WHY TRANSROYAL -->
+        <section class="why" id="why">
+
+            <div class="container">
+
+                <div class="section-label">
+                    Why TransRoyal
+                </div>
+
+                <h2 class="section-title">
+                    Built around your cargo.
+                </h2>
+
+                <p class="section-intro">
+                    A professional approach focused on coordination,
+                    flexibility and clear logistics solutions.
                 </p>
+
+
+                <div class="why-grid">
+
+                    <article class="why-card">
+                        <div class="why-icon">01</div>
+                        <h3>Professional</h3>
+                        <p>
+                            A structured approach to transportation and
+                            logistics requirements.
+                        </p>
+                    </article>
+
+                    <article class="why-card">
+                        <div class="why-icon">02</div>
+                        <h3>Flexible</h3>
+                        <p>
+                            Solutions designed around the specific needs of
+                            each shipment.
+                        </p>
+                    </article>
+
+                    <article class="why-card">
+                        <div class="why-icon">03</div>
+                        <h3>International</h3>
+                        <p>
+                            Logistics services covering both domestic and
+                            international transportation needs.
+                        </p>
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- HOW IT WORKS -->
+        <section class="process">
+
+            <div class="container">
+
+                <div class="section-label">
+                    How It Works
+                </div>
+
+                <h2 class="section-title">
+                    Simple. Clear. Efficient.
+                </h2>
+
+                <p class="section-intro">
+                    A straightforward process from your first request to the
+                    movement of your cargo.
+                </p>
+
+
+                <div class="process-grid">
+
+                    <article class="process-step">
+                        <div class="process-number">01 — REQUEST</div>
+                        <h3>Tell us what you need.</h3>
+                        <p>
+                            Share the basic details of your shipment and
+                            transportation requirements.
+                        </p>
+                    </article>
+
+                    <article class="process-step">
+                        <div class="process-number">02 — SOLUTION</div>
+                        <h3>We coordinate the solution.</h3>
+                        <p>
+                            Your requirements are assessed and the appropriate
+                            logistics solution is prepared.
+                        </p>
+                    </article>
+
+                    <article class="process-step">
+                        <div class="process-number">03 — MOVEMENT</div>
+                        <h3>Your cargo moves forward.</h3>
+                        <p>
+                            The transportation process is coordinated according
+                            to the agreed requirements.
+                        </p>
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- CTA -->
+        <section class="cta">
+
+            <div class="container cta-content">
+
+                <div class="section-label">
+                    Let's Move Forward
+                </div>
+
+                <h2>
+                    Need a quotation?
+                </h2>
+
+                <p>
+                    Tell us about your shipment and let’s discuss the right
+                    logistics solution for your requirements.
+                </p>
+
+                <a href="#quote" class="btn">
+                    Get Your Quote
+                </a>
+
+            </div>
+
+        </section>
+
+
+        <!-- QUOTE FORM -->
+        <section class="quote" id="quote">
+
+            <div class="container quote-grid">
+
+                <div class="quote-info">
+
+                    <div class="section-label">
+                        Request a Quote
+                    </div>
+
+                    <h2 class="section-title">
+                        Let's discuss your shipment.
+                    </h2>
+
+                    <p>
+                        Complete the form with the available shipment details.
+                        The final contact and submission settings can be added
+                        when the TransRoyal domain and business email are ready.
+                    </p>
+
+                </div>
+
+
+                <form class="quote-form" action="#" method="post">
+
+                    <div class="form-group">
+                        <label for="company">Company</label>
+                        <input
+                            type="text"
+                            id="company"
+                            name="company"
+                            placeholder="Company name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="name">Contact Person</label>
+                        <input
+                            type="text"
+                            id="name"
+                            name="name"
+                            placeholder="Your name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="Your email">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone</label>
+                        <input
+                            type="tel"
+                            id="phone"
+                            name="phone"
+                            placeholder="Your phone">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="from">From</label>
+                        <input
+                            type="text"
+                            id="from"
+                            name="from"
+                            placeholder="Origin">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="to">To</label>
+                        <input
+                            type="text"
+                            id="to"
+                            name="to"
+                            placeholder="Destination">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="transport">Transport Type</label>
+                        <select id="transport" name="transport">
+                            <option value="">Select</option>
+                            <option>Road Transport</option>
+                            <option>Air Freight</option>
+                            <option>Sea Freight</option>
+                            <option>Warehousing</option>
+                            <option>Distribution</option>
+                            <option>Customs Clearance</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cargo">Cargo</label>
+                        <input
+                            type="text"
+                            id="cargo"
+                            name="cargo"
+                            placeholder="Cargo description">
+                    </div>
+
+                    <div class="form-group full">
+                        <label for="message">Message</label>
+                        <textarea
+                            id="message"
+                            name="message"
+                            placeholder="Tell us about your shipment"></textarea>
+                    </div>
+
+                    <div class="form-submit">
+                        <button type="submit" class="btn">
+                            Request a Quote
+                        </button>
+                    </div>
+
+                </form>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer>
+
+        <div class="container footer-inner">
+
+            <div class="footer-brand">
+                TRANS<span>ROYAL</span>
+            </div>
+
+            <div class="footer-copy">
+                © 2026 TransRoyal — Freight Forwarding & Logistics
             </div>
 
         </div>
 
-    </section>
-
-    <section class="cta" id="contact">
-
-        <h2>Need a quotation?</h2>
-
-        <p>
-            Tell us what you need to transport and we'll get back to you.
-        </p>
-
-        <a href="mailto:info@transroyal.gr" class="button">
-            GET YOUR QUOTATION
-        </a>
-
-    </section>
-
-</main>
-
-<footer>
-    © 2026 TRANSROYAL — Freight Forwarding & Logistics
-</footer>
+    </footer>
 
 </body>
 </html>
